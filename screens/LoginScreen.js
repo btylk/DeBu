@@ -1,31 +1,29 @@
 import React from "react";
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
 import * as firebase from "firebase";
+import { Facebook } from "expo";
 
-export default class RegisterScreen extends React.Component {
+
+export default class LoginScreen extends React.Component {
     state = {
-        name: "",
         email: "",
         password: "",
         errorMessage: null
     };
 
-    handleSignUp = () => {
+    handleLogin = () => {
+        const { email, password } = this.state;
+
         firebase
             .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(userCredentials => {
-                return userCredentials.user.updateProfile({
-                    displayName: this.state.name
-                });
-            })
+            .signInWithEmailAndPassword(email, password)
             .catch(error => this.setState({ errorMessage: error.message }));
     };
 
     render() {
         return (
             <View style={styles.container}>
-                <Text style={styles.greeting}>{`Sign Up`}</Text>
+                <Text style={styles.greeting}>{`ลงชื่อเข้าใช้`}</Text>
 
                 <View style={styles.errorMessage}>
                     {this.state.errorMessage && <Text style={styles.error}>{this.state.errorMessage}</Text>}
@@ -33,17 +31,7 @@ export default class RegisterScreen extends React.Component {
 
                 <View style={styles.form}>
                     <View>
-                        <Text style={styles.inputTitle}>User Name</Text>
-                        <TextInput
-                            style={styles.input}
-                            autoCapitalize="none"
-                            onChangeText={name => this.setState({ name })}
-                            value={this.state.name}
-                        ></TextInput>
-                    </View>
-
-                    <View style={{ marginTop: 32 }}>
-                        <Text style={styles.inputTitle}>Email Address</Text>
+                        <Text style={styles.inputTitle}>อีเมลล์</Text>
                         <TextInput
                             style={styles.input}
                             autoCapitalize="none"
@@ -53,7 +41,7 @@ export default class RegisterScreen extends React.Component {
                     </View>
 
                     <View style={{ marginTop: 32 }}>
-                        <Text style={styles.inputTitle}>Password</Text>
+                        <Text style={styles.inputTitle}>รหัสผ่าน</Text>
                         <TextInput
                             style={styles.input}
                             secureTextEntry
@@ -64,15 +52,20 @@ export default class RegisterScreen extends React.Component {
                     </View>
                 </View>
 
-                <TouchableOpacity style={styles.button} onPress={this.handleSignUp}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Sign up</Text>
+                <TouchableOpacity style={styles.button} onPress={this.handleLogin}>
+                    <Text style={{ color: "#FFF", fontWeight: "500" }}>ลงชื่อเข้าใช้</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={{ alignSelf: "center", marginTop: 32 }}
-                    onPress={() => this.props.navigation.navigate("Sign_In")}
+                <TouchableOpacity style={styles.buttonFB} onPress={this.handleLogin}>
+                    <Text style={{ color: "#FFF", fontWeight: "500" }}>ลงชื่อเข้าใช้ด้วย Facebook</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={{ alignSelf: "center", marginTop: 32 }}
+                    onPress={() => this.props.navigation.navigate("Sign_Up")}
                 >
                     <Text style={{ color: "#414959", fontSize: 13 }}>
-                        Have an Account? <Text style={{ fontWeight: "500", color: "#E9446A" }}>Login</Text>
+                        ยังไม่มีบัญชี? <Text style={{ fontWeight: "500", color: "#E9446A" }}>ลงทะเบียน</Text>
                     </Text>
                 </TouchableOpacity>
             </View>
@@ -122,6 +115,15 @@ const styles = StyleSheet.create({
     button: {
         marginHorizontal: 30,
         backgroundColor: "#E9446A",
+        borderRadius: 4,
+        height: 52,
+        alignItems: "center",
+        justifyContent: "center"
+    },
+    buttonFB: {
+        marginTop: 5,
+        marginHorizontal: 30,
+        backgroundColor: "#4267B2",
         borderRadius: 4,
         height: 52,
         alignItems: "center",
