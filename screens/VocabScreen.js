@@ -1,5 +1,5 @@
 import React from 'react';
-import { SectionList, StyleSheet, Text, View } from 'react-native';
+import { SectionList, StyleSheet, Text, View, Platform, Alert,TouchableOpacity } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -20,11 +20,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 44,
   },
+  header: {
+    marginBottom: 5,
+    fontSize: 20,
+    paddingLeft: 5,
+    fontWeight: "bold"
+  }
 })
 
 const SectionListBasics = () => {
     return (
       <View style={styles.container}>
+        <Text style={styles.header}>คำศัพท์</Text>
         <SectionList
           sections={[
             {title: 'ก', data: ['กาก', 'กระจอก', 'กระทืบ']},
@@ -56,5 +63,4 @@ const SectionListBasics = () => {
       </View>
     );
 }
-
 export default SectionListBasics;
