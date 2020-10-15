@@ -56,9 +56,9 @@ export default class LoginScreen extends React.Component {
                     <Text style={{ color: "#FFF", fontWeight: "500" }}>ลงชื่อเข้าใช้</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.buttonFB} onPress={this.handleLogin}>
+                {/* <TouchableOpacity style={styles.buttonFB} onPress={this.handleLogin}>
                     <Text style={{ color: "#FFF", fontWeight: "500" }}>ลงชื่อเข้าใช้ด้วย Facebook</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
 
                 <TouchableOpacity
                     style={{ alignSelf: "center", marginTop: 32 }}
