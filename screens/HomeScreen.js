@@ -4,8 +4,44 @@ import * as firebase from "firebase";
 
 export default class HomeScreen extends React.Component {
     state = {
-        url: ""
+        url: "",
+        hasError: false,
+        users: {}
     };
+    // getfetch = () => {
+    //     fetch('http://127.0.0.1:8080/my_json',{
+    //           method: 'GET',
+    //           headers: {
+    //             Accept: 'application/json',
+    //             'Content-Type': 'application/json',
+    //           }
+    //         })
+    //     .then(response => response.json())
+    //     // .then((responseJson) => {
+    
+    //     //    console.log(responseJson);
+    
+    //     // })
+    //     .then(response => this.setState({users: response}))
+    //     .catch((error) =>{
+    //         console.error(error);
+    //     });
+    // }
+    componentDidUpdate() {
+        fetch('http://127.0.0.1:8080/my_json',{
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        // .then((responseJson) =>{
+        //     console.log(responseJson);
+        // })
+        .then(response => this.setState({users: response}))
+        .catch(() => this.setState({ hasError: true}))
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -16,12 +52,14 @@ export default class HomeScreen extends React.Component {
                             style={styles.input}
                             autoCapitalize="none"
                             onChangeText={url => this.setState({ url })}
+                            
                             value={this.state.url}
                     ></TextInput>
                 
                 <TouchableOpacity style={{...styles.button, marginTop: 32}}>
                     <Text style={{ color: "#FFF", fontWeight: "500" }}>บันทึก</Text>
                 </TouchableOpacity>
+                <Text>{JSON.stringify(this.state.users)}</Text>
                 </View>
             </View>   
         );
