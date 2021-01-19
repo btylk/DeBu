@@ -8,6 +8,9 @@ export default class HomeScreen extends React.Component {
         hasError: false,
         users: {}
     };
+    constructor(props){
+        super(props)
+    }
     // getfetch = () => {
     //     fetch('http://127.0.0.1:8080/my_json',{
     //           method: 'GET',
@@ -27,13 +30,16 @@ export default class HomeScreen extends React.Component {
     //         console.error(error);
     //     });
     // }
-    componentDidUpdate() {
-        fetch('http://127.0.0.1:8080/my_json',{
-            method: 'GET',
+    getfetch =()=> {
+        // let formdata = new FormData();
+        // formdata.append("input_value", this.state.url);
+        fetch('http://127.0.0.1:8080/test_post',{
+            method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-            }
+            },
+            body: JSON.stringify({'data':this.state.url})
         })
         .then(response => response.json())
         // .then((responseJson) =>{
@@ -56,11 +62,17 @@ export default class HomeScreen extends React.Component {
                             value={this.state.url}
                     ></TextInput>
                 
-                <TouchableOpacity style={{...styles.button, marginTop: 32}}>
+
+                <TouchableOpacity style={styles.button} onPress={this.getfetch}>
                     <Text style={{ color: "#FFF", fontWeight: "500" }}>บันทึก</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('./screens/ReportScreen',{data:this.users})}>
+                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Send data</Text>
                 </TouchableOpacity>
                 <Text>{JSON.stringify(this.state.users)}</Text>
                 </View>
+
+                
             </View>   
         );
     }
@@ -86,6 +98,7 @@ const styles = StyleSheet.create({
         width: 200,
         alignItems: "center",
         justifyContent: "center",
+        marginTop: 20
     },
     inputTitle: {
         color: "#8A8F9E",

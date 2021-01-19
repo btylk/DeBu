@@ -13,12 +13,14 @@ class ReportScreen extends React.Component {
     // modalVisible: false
         users: {}
     };
-
+    constructor(props){
+        super(props)
+    }
 //   setModalVisible = (visible) => {
 //     this.setState({ modalVisible: visible });
 //   }
     componentDidMount() {
-        fetch('http://127.0.0.1:8080/my_json',{
+        fetch('http://127.0.0.1:8080/test_post',{
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -34,6 +36,7 @@ class ReportScreen extends React.Component {
     }
     render() {
         // const { modalVisible } = this.state;
+        // const {data} = this.props.route.params
         return (
         <View style={styles.container}>
             <Text style={styles.header}>รายงาน</Text>
