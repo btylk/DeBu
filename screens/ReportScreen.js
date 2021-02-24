@@ -42,11 +42,19 @@ class ReportScreen extends React.Component {
         // const {data} = this.props.route.params
         const { navigation } = this.props; 
         const data_report = navigation.getParam('data')
+        let JSObj = JSON.parse(data_report)
         return (
         <View style={styles.container}>
             <Text style={styles.header}>รายงาน</Text>
                 <View style={styles.centeredView}>
-                <Text>{data_report}</Text>    
+                <Text>หัวข้อ: {JSON.stringify(JSObj.Title)}</Text>
+                <Text>ขั้วอารมณ์ความคิดเห็น: {JSON.stringify(JSObj.Polarity)}</Text>
+                <Text>ความคิดเห็น: {JSON.stringify(JSObj.Sentiment)}</Text>
+                <Text>ประกาศหรือโฆษณา: {JSON.stringify(JSObj.Announcement)}</Text>
+                <Text>ร้อยละคะแนนความมั่นใจ: {JSON.stringify(JSObj.Score)}</Text>
+                <Text>คำทั้งหมด: {JSON.stringify(JSObj.All_word)}</Text>
+                <Text>คำที่พบ: {JSON.stringify(JSObj.Word_found)}</Text>
+                <Text>ร้อยละของคำที่พบ: {JSON.stringify(JSObj.Percent)}</Text>
             </View>
         </View>
         );
@@ -69,7 +77,15 @@ const styles = StyleSheet.create({
         // flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 80
+        marginTop: 80,
+        marginLeft: 20,
+        marginRight: 20,
+        borderRadius: 6,
+        backgroundColor: "#E9446A",
+        color: "#FFFFFF"
+
+
+        
     },
     modalView: {
         margin: 20,

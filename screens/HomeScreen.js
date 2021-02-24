@@ -72,7 +72,7 @@ export default class HomeScreen extends React.Component {
                 <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Report',{data:JSON.stringify(this.state.users)})}>
                     <Text style={{ color: "#FFF", fontWeight: "500" }}>รายงาน</Text>
                 </TouchableOpacity>
-                <Text>{JSON.stringify(this.state.users)}</Text>
+                <Text>{JSON.stringify(this.state.users.Title)}</Text>
                 </View>
 
                 
