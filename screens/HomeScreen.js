@@ -6,13 +6,14 @@ export default class HomeScreen extends React.Component {
     state = {
         url: "",
         hasError: false,
-        users: {}
+        users: {},
+        status: false
     };
     constructor(props){
         super(props)
     }
     // getfetch = () => {
-    //     fetch('http://127.0.0.1:8080/my_json',{
+    //     fetch('http://127.0.0.1:8080/test_post',{
     //           method: 'GET',
     //           headers: {
     //             Accept: 'application/json',
@@ -33,7 +34,7 @@ export default class HomeScreen extends React.Component {
     getfetch =()=> {
         // let formdata = new FormData();
         // formdata.append("input_value", this.state.url);
-        fetch('http://127.0.0.1:8080/test_post',{
+        fetch('https://flaskapiscrap.herokuapp.com/test_post',{
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -47,6 +48,8 @@ export default class HomeScreen extends React.Component {
         // })
         .then(response => this.setState({users: response}))
         .catch(() => this.setState({ hasError: true}))
+        // .then({'status': 'success'})
+
     }
     render() {
         return (
@@ -66,8 +69,8 @@ export default class HomeScreen extends React.Component {
                 <TouchableOpacity style={styles.button} onPress={this.getfetch}>
                     <Text style={{ color: "#FFF", fontWeight: "500" }}>บันทึก</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('./screens/ReportScreen',{data:this.users})}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>Send data</Text>
+                <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Report',{data:JSON.stringify(this.state.users)})}>
+                    <Text style={{ color: "#FFF", fontWeight: "500" }}>รายงาน</Text>
                 </TouchableOpacity>
                 <Text>{JSON.stringify(this.state.users)}</Text>
                 </View>
