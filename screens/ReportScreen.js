@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
         marginRight: 20,
         borderRadius: 6,
         color: "#FFFFFF",
-        backgroundColor: "#FA8072", 
+        backgroundColor: "#A2E2F8", 
     },
     line_space:{
         borderBottomWidth: 5,

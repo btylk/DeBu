@@ -1,7 +1,8 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, ActivityIndicator, Image } from "react-native";
 // import * as firebase from "firebase";
 import firebase from '../database/firebaseDb'
+import { Dimensions } from "react-native";
 
 export default class HomeScreen extends React.Component {
     // state = {
@@ -115,6 +116,8 @@ export default class HomeScreen extends React.Component {
     }
     
     render() {
+        let Image_Http_URL ={ uri: 'https://www.flaticon.com/free-icon/url_1089290?term=url&page=1&position=22&page=1&position=22&related_id=1089290&origin=search'};
+        const screenWidth = Dimensions.get("window").width;
         if(this.state.isLoading){
             return(
                 <View style={styles.preloader}>
@@ -124,32 +127,35 @@ export default class HomeScreen extends React.Component {
         }
         return (
             <View style={styles.container}>
-                <Text style={styles.header}>หน้าหลัก</Text>
-                <View style={styles.center}>
-                    <Text style={styles.inputTitle}>URL เว็บไซต์ที่ต้องการวิเคราะห์</Text>
-                        <TextInput
-                            style={styles.input}
-                            autoCapitalize="none"
-                            onChangeText={url => this.setState({ url }), (val) => this.inputValueUpdate(val, 'url') }
-                            
-                            value={this.state.url}
-                            // onChangeText={(val) => this.inputValueUpdate(val, 'url')}
-                    ></TextInput>
-                
+                {/* <Text style={styles.header}>หน้าหลัก</Text> */}
+                <View style={styles.border}>
+                    <View style={styles.center}>
+                        <Image source={require('./www1.png')} style = {{height: 89, width: 89, resizeMode : 'stretch', margin: 20, marginBottom: 20 }}/>
+                        {/* <Image source={Image_Http_URL} style = {{height: 196, width: 157, margin: 5 }} /> */}
+                        <Text style={styles.inputTitle}>URL เว็บไซต์ที่ต้องการวิเคราะห์</Text>
+                            <TextInput
+                                style={styles.input}
+                                autoCapitalize="none"
+                                onChangeText={url => this.setState({ url }), (val) => this.inputValueUpdate(val, 'url') }
+                                
+                                value={this.state.url}
+                                // onChangeText={(val) => this.inputValueUpdate(val, 'url')}
+                        ></TextInput>
+                    
 
-                <TouchableOpacity style={styles.button} onPress={this.getfetch}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>บันทึก</Text>
-                </TouchableOpacity>
-                {/* <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Report',{data:JSON.stringify(this.state.users)})}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>รายงาน</Text>
-                </TouchableOpacity> */}
-                {/* <TouchableOpacity style={styles.button} onPress={()=>this.storeData()}>
-                    <Text style={{ color: "#FFF", fontWeight: "500" }}>database</Text>
-                </TouchableOpacity>
-                <Text>{JSON.stringify(this.state.users.Title)}</Text> */}
+                    <TouchableOpacity style={styles.button} onPress={this.getfetch}>
+                        <Text style={{ color: "#FFF", fontWeight: "500" }}>บันทึก</Text>
+                    </TouchableOpacity>
+                    {/* <TouchableOpacity style={styles.button} onPress={()=>this.props.navigation.navigate('Report',{data:JSON.stringify(this.state.users)})}>
+                        <Text style={{ color: "#FFF", fontWeight: "500" }}>รายงาน</Text>
+                    </TouchableOpacity> */}
+                    {/* <TouchableOpacity style={styles.button} onPress={()=>this.storeData()}>
+                        <Text style={{ color: "#FFF", fontWeight: "500" }}>database</Text>
+                    </TouchableOpacity>
+                    <Text>{JSON.stringify(this.state.users.Title)}</Text> */}
+                    </View>
+
                 </View>
-
-                
             </View>   
         );
     }
@@ -159,6 +165,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingTop: 22,
+        backgroundColor: "#75BDE0"
     },
     header: {
         marginBottom: 5,
@@ -169,18 +176,19 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: "#E9446A",
+        backgroundColor: "#F3533A",
         borderRadius: 4,
         height: 52,
         width: 200,
         alignItems: "center",
         justifyContent: "center",
-        marginTop: 20
+        marginTop: 10,
+        marginBottom: 20,
     },
     inputTitle: {
         color: "#8A8F9E",
         fontSize: 12,
-        textTransform: "uppercase"
+        textTransform: "uppercase",
     },
     input: {
         borderBottomColor: "#8A8F9E",
@@ -188,12 +196,29 @@ const styles = StyleSheet.create({
         height: 40,
         fontSize: 15,
         color: "#161F3D",
-        width: 300
+        width: 300,
+        backgroundColor: "#F0F3F4",
+        borderRadius: 5
     },
     center: {
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 200
+        marginTop: 10,
+        
+        // backgroundColor: "#4267B2"
+    },
+    border: {
+        justifyContent: "center",
+        // textAlign: "left",
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 12,
+        marginTop: 170,
+        marginLeft: 20,
+        marginRight: 20,
+        borderRadius: 6,
+        color: "#FFFFFF",
+        backgroundColor: "#FFFFFF",
     },
     preloader: {
         position: 'absolute',
