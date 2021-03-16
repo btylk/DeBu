@@ -36,9 +36,9 @@ const SectionListBasics = () => {
         <Text style={styles.header}>คำศัพท์</Text>
         <SectionList
           sections={[
-            {title: 'ก', data: ['กาก', 'กระจอก', 'กระทืบ']},
-            {title: 'ข', data: ['ขี้ครอก', 'ขี้เหร่', 'ขยะสังคม']},
-            {title: 'ค', data: ['ควย']},
+            {title: 'ก', data: ['กาก', 'กระจอก', 'เกลียดชีวิต', 'เกลียดสังคม', 'เกลียดตัวเอง']},
+            {title: 'ข', data: ['ขี้เหร่', 'ขยะสังคม']},
+            {title: 'ค', data: ['ความตาย', 'คับแค้น', 'เคว้งคว้าง']},
             {title: 'ง', data: ['โง่']},
             {title: 'จ', data: ['จัญไร']},
             {title: 'ฉ', data: ['ฉิบหาย']},

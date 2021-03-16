@@ -11,6 +11,7 @@ import HomeScreen from "./screens/HomeScreen";
 import ReportScreen from "./screens/ReportScreen";
 import VocabScreen from "./screens/VocabScreen";
 import SettingScreen from "./screens/SettingScreen";
+import DetailScreen from "./screens/DetailScreen";
 import Easing from "react-native";
 
 
@@ -39,6 +40,12 @@ const AppTabNavigator = createBottomTabNavigator(
                 tabBarIcon: ({ tintColor }) => <Ionicons name="ios-home" size={24} color={tintColor} />
             }
         },
+        Setting: {
+            screen: SettingScreen,
+            navigationOptions: {
+                tabBarIcon: ({ tintColor }) => <Ionicons name="ios-list" size={24} color={tintColor} />
+            }
+        },
         Report: {
             screen: ReportScreen,
             navigationOptions: {
@@ -51,12 +58,13 @@ const AppTabNavigator = createBottomTabNavigator(
                 tabBarIcon: ({ tintColor }) => <Ionicons name="ios-paper" size={24} color={tintColor} />
             }
         },
-        Setting: {
-            screen: SettingScreen,
-            navigationOptions: {
-                tabBarIcon: ({ tintColor }) => <Ionicons name="ios-settings" size={24} color={tintColor} />
-            }
-        }
+
+        // Details: {
+        //     screen: DetailScreen,
+        //     navigationOptions: {
+        //         tabBarIcon: ({ tintColor }) => <Ionicons name="ios-settings" size={24} color={tintColor} />
+        //     }
+        // }
     },
     {
         tabBarOptions: {

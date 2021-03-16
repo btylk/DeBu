@@ -70,7 +70,7 @@ export default class HomeScreen extends React.Component {
                     Percent_desolate: "",
                     isLoading: false
                 })
-                // this.props.navigation.navigate('Vocab')
+                // this.props.navigation.navigate('Setting')
                 // this.props.navigation.navigate('Report',{data:JSON.stringify(this.state.users)})
             })
             .catch((err) => {
@@ -106,6 +106,7 @@ export default class HomeScreen extends React.Component {
             this.setState({
                 users: response})
             this.storeData()
+            // this.props.navigation.navigate('Setting')
             this.props.navigation.navigate('Report',{data:JSON.stringify(this.state.users)})
         })
             
